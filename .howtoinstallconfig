@@ -1,0 +1,49 @@
+#1. You need to install esLint
+
+npm install eslint --save-dev
+
+------
+
+#2. Create eslint.json file
+
+eslint --init
+
+    #2.1 Choose AirBnb style config
+    #2.2 Choose React : YES
+
+------
+
+#3. Open .eslint and make sure it looks like this 
+
+    module.exports = {
+        "extends": "airbnb",
+        "plugins": [
+            "react",
+            "jsx-a11y",
+            "import"
+        ],
+        "rules": {
+            "indent": [2, 4]
+        }
+    };
+
+------
+
+#4. Install Prettier to format our code based on our ESLint rules 
+
+    npm install prettier-eslint --save-dev
+
+------
+
+#5. Add eslint command to package json 
+
+    "scripts": {
+        "eslint": "eslint" // npm run eslint
+    }
+
+
+#5. Install ESLint and Prettier Code Formatter for VSCode
+
+-----
+
+# And voilà! Your code is now subject the rules of the most popular JavaScript style guide. Happy coding!
