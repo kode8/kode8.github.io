@@ -1,0 +1,11 @@
+@import 'normalize';
+@import 'settings/colors';
+
+body {
+    -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-size: 0.875rem;
+	line-height: 1.44;
+    background-color: $primary-color;
+    color: $white;
+}

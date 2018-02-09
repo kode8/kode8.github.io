@@ -54,12 +54,13 @@ const config = {
                 }, {
                     loader: 'postcss-loader',
                     options: {
-                        ident: 'postcss',
                         plugins: () => [
-                            autoprefixer()({ browsers: ['last 3 versions', 'ie 10'] }),
+                            autoprefixer({
+                                browserlist: ['last 3 versions', 'ie 10'],
+                            }),
                             postcssflexbugsfixes(),
                             postcsspxtorem(),
-                            postcssinlinesvg()({
+                            postcssinlinesvg({
                                 removeFill: true,
                                 path: path.resolve(paths.images),
                             }),
