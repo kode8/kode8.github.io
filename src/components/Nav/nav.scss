@@ -1,0 +1,71 @@
+@import 'settings/core';
+@import 'settings/colors';
+@import 'mixins/helpers';
+
+.nav {
+    $block: &;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+}
+.primary-nav {
+    @extend .nav;
+    &__item-link {
+        display: block;
+        color: $white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 20px;
+        box-sizing: border-box;
+        @include transition(all);
+        will-change: all;
+        backface-visibility: hidden;
+        opacity: .75;
+
+        &:hover, 
+        &--active {
+            background-color: darken($primary-color,1.8);
+            box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
+            opacity: 1;
+            text-shadow: 1px 1px darken($secondary-color, 20%);
+            border-radius: 0 0 5px 5px;
+        }
+
+        &--active {
+            background-color: darken($primary-color,1.8);
+            cursor: default;
+        }
+    }
+}
+.secondary-nav {
+    @extend .nav;
+    &__item-link {
+        display: block;
+        color: $white;
+        text-decoration: none;
+        font-size: .9rem;
+        padding: 10px;
+        box-sizing: border-box;
+        @include transition(all);
+        will-change: all;
+        backface-visibility: hidden;
+        opacity: .75;
+
+        &:hover, 
+        &--active {
+            opacity: 1;
+            text-shadow: 1px 1px darken($secondary-color, 20%);
+            border-radius: 5px;
+        }
+
+        &--active {
+            background-color: darken($primary-color,1.8);
+        }
+    }
+}
+

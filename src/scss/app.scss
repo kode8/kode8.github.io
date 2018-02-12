@@ -1,11 +1,18 @@
 @import 'normalize';
+@import 'settings/core';
 @import 'settings/colors';
 
 body {
     -moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	font-size: 0.875rem;
-	line-height: 1.44;
+    font-size: $base-font-size;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+	line-height: $base-line-height;
     background-color: $primary-color;
     color: $white;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }

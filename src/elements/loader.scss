@@ -1,0 +1,59 @@
+@import 'settings/core';
+@import 'settings/colors';
+@import 'mixins/helpers';
+
+.loader {
+
+    $block : &;
+    margin: 100px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    @include transition(all);
+    transform: translate3d(0,-30px,0);
+    opacity: 0;
+
+    &__cube1, 
+    &__cube2 {
+        background-color: $white;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: resume-cubemove 1.8s infinite ease-in-out;
+    }
+    &__cube2 {
+        animation-delay: -0.9s;
+    }
+
+    &--active {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+
+    &__fallback {
+        display: none;
+    }
+
+    .no-csstransitions & {
+        #{$block}__fallback {
+            display: block;
+        }
+    }
+}
+
+@keyframes resume-cubemove {
+    25% { 
+        transform: translateX(42px) rotate(-90deg) scale(0.5);
+    } 50% { 
+        transform: translateX(42px) translateY(42px) rotate(-179deg);
+    } 50.1% { 
+        transform: translateX(42px) translateY(42px) rotate(-180deg);
+        background-color: $tertiary;
+    } 75% { 
+        transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    } 100% { 
+        transform: rotate(-360deg);
+    }
+}

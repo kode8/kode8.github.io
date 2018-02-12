@@ -1,0 +1,6 @@
+@import 'settings/core';
+
+/* Default transition mixin */
+@mixin transition($transition...) {
+    transition: $transition $transition-speed $transition-timing;
+}

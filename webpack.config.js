@@ -24,8 +24,9 @@ const config = {
             Api: paths.api,
             Components: paths.components,
             Containers: paths.containers,
+            Elements: paths.elements,
             Images: paths.images,
-            Utils: paths.utils,
+            Utils: paths.utils
         },
     },
     module: {
@@ -71,6 +72,9 @@ const config = {
                     },
                 }, {
                     loader: 'sass-loader', // compiles Sass to CSS
+                    options: {
+                        includePaths: [paths.scss]
+                    }
                 }],
             },
         ],

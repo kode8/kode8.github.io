@@ -1,0 +1,24 @@
+@import 'settings/colors';
+
+/* Line height units */
+$base-line-height: 1.44;
+
+/* Font size units */
+$base-font-size: 1rem;
+$nav-font-size: 1.2rem;
+
+/* Transition units */
+$transition-speed: .15s;
+$transition-timing: ease;
+
+/* Links */
+$link: $white;
+$link-hover: lighten($primary-color, 42%);
+
+// $backgroundColor1: $color-primary;
+// $backgroundColor2: $color-secondary;
+// $backgroundColor2: $color-secondary;
+
+// :export {
+//     animationMillis: $animation-length-ms;
+//   }
