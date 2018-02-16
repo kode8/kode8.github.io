@@ -1,34 +1,33 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // Nav link adds some extra properties ie activeClassName
+import { NavLink, withRouter} from 'react-router-dom'; // Nav link adds some extra properties ie activeClassName
 
 import './nav.scss';
 
 const Nav = (props) => {
-    const items = [
-        {url: '/', name: 'Me'}, 
-        {url: '/experience', name: 'Experience'}, 
-        {url: '/services', name: 'Services'}, 
-        {url: '/portfolio', name: 'Portfolio'}, 
-        {url: '/contact', name: 'Contact'}, 
-    ];
+
+    let navItems = (props.navItems !== null) ? props.navItems : [];
+
+    const navContainer = `${props.classNamePrefix}-nav`,
+          navLink = `${navContainer}__item-link`,
+          navLinkActive = `${navLink}--active`;
+
+    const { match, location, history } = props;
 
     console.log(props);
-
-    const navContainer = `${props.classNamePrefix}-nav`;
-    const navLink = `${navContainer}__item-link`;
-    const navLinkActive = `${navLink}--active`;
 
     return (
         <ul className={navContainer} >
         { 
-            items.map( (value, index) => {
+            navItems.map( (value, index) => {
                 return (
                     <li key={ index }>
                         <NavLink 
-                            to={value.url} 
+                            exact
+                            to={value.slug} 
                             className={navLink} 
-                            activeClassName={navLinkActive}>
-                            <span>{ value.name }</span>
+                            activeClassName={navLinkActive}
+                            >
+                            <span>{value.title}</span>
                         </NavLink>
                     </li>
                 );
@@ -38,4 +37,6 @@ const Nav = (props) => {
     )
 }
 
-export default Nav;
+const NavWithRouter = withRouter(Nav)
+
+export default NavWithRouter;

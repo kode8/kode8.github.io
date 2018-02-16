@@ -10,6 +10,7 @@ const getPaths = webroot => ({
     elements: path.resolve(webroot, './src/elements'),
     images: path.resolve(webroot, './src/images'),
     utils: path.resolve(webroot, './src/utils'),
+    helpers: path.resolve(webroot, './src/helpers'),
     scss: path.resolve(webroot, './src/scss'),
 });
 

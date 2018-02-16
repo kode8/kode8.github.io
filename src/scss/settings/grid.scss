@@ -1,0 +1,16 @@
+.grid {
+    display: flex;
+    flex-flow: row wrap;
+    @include medium {
+        margin: 0 -$base-spacing;
+    }
+    &__col {
+        width: 100%;
+        text-align: justify;
+        @include medium {
+           width: 50%;
+           box-sizing: border-box;
+           padding: $base-spacing;
+        }
+    }
+}

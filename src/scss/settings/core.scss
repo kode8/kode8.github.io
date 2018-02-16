@@ -8,17 +8,30 @@ $base-font-size: 1rem;
 $nav-font-size: 1.2rem;
 
 /* Transition units */
-$transition-speed: .15s;
+$transition-speed: .3s;
 $transition-timing: ease;
 
-/* Links */
-$link: $white;
-$link-hover: lighten($primary-color, 42%);
+/* Margins */
+$base-spacing: 1rem;
+$base-spacing-half: $base-spacing / 2;
+$base-spacing-quarter: $base-spacing-half / 2;
 
-// $backgroundColor1: $color-primary;
-// $backgroundColor2: $color-secondary;
-// $backgroundColor2: $color-secondary;
+/* MQ */
+$medium-width: 768px;
+$large-width: 1024px;
 
-// :export {
-//     animationMillis: $animation-length-ms;
-//   }
+.example-component {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden; 
+  }
+  .example-component.show {
+    opacity: 1;
+    visibility: visible; 
+  }

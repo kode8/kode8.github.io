@@ -1,0 +1,31 @@
+@import 'settings/core';
+@import 'settings/colors';
+@import 'mixins/helpers';
+
+.tt {
+    $block: &;
+
+    &__title {
+        font-size: 3.5rem;
+        margin: $base-spacing 0 $base-spacing-half 0;
+        
+        &-medium {
+            font-size: 2rem;
+        }
+        &-small {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__text {
+        margin-bottom: $base-spacing;
+
+        &-small {
+            font-size: 0.9rem;
+        }
+        &-xsmall {
+            font-size: 0.8rem;
+        }
+
+    }
+}

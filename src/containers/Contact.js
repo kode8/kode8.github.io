@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Contact = () => {
-    return (
-         <p>Contact</p>
-    );
+class Contact extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        document.body.className = 'theme-french';
+    }
+
+    render() {
+        return(
+            <p>Contact</p>
+        )
+    }
 }
 
 export default Contact;

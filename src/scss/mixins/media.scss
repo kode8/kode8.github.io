@@ -1,0 +1,13 @@
+@import 'settings/core';
+
+@mixin medium {
+    @media (min-width: #{$medium-width}) {
+      @content;
+    }
+}
+  
+@mixin large {
+    @media (min-width: #{$large-width}) {
+        @content;
+    }
+}

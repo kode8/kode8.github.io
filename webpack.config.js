@@ -26,14 +26,15 @@ const config = {
             Containers: paths.containers,
             Elements: paths.elements,
             Images: paths.images,
-            Utils: paths.utils
+            Utils: paths.utils,
+            Helpers: paths.helpers
         },
     },
     module: {
         rules: [
             {
                 test: /\.(js)$/,
-                use: 'babel-loader',
+                use: 'babel-loader'
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,

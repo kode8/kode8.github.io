@@ -2,30 +2,12 @@
 /* Implicit colors */
 $white: white;
 $gigas: #4339A7;
-$minks: #362C8B;
-$radical-red: #FC1C62;
-$french-rose: #F3498A;
-$starship: #F3DE49;
+$radical: #9A30AE;
+$french: #E72564;
+$starship: #a6bf01;
+$bottle: #4054B2;
 
-/* Brand colors */
-$primary-color: $gigas;
-$secondary-color: $minks;
-$tertiary: $radical-red;
 
-/* Background colors */
-$backgroundColorA: $gigas;
-$backgroundColorB: $radical-red;
-$backgroundColorC: $french-rose;
-$backgroundColorD: $starship;
-
-/* Export colours to JS */
-:export {
-    backgroundColorA: $backgroundColorA;
-    backgroundColorB: $backgroundColorB;
-    backgroundColorC: $backgroundColorC;
-    backgroundColorD: $backgroundColorD;
-}
-  
 
 
 

@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Services = () => {
-    return (
-        <p>Services</p>
-    );
+class Services extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        document.body.className = 'theme-bottle';
+    }
+
+    render() {
+        return(
+            <p>Services</p>
+        )
+    }
 }
 
 export default Services;

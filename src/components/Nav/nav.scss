@@ -6,12 +6,12 @@
     $block: &;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     list-style: none;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 0 0 0 -20px;
     padding: 0;
+    height: 70px;
 }
 .primary-nav {
     @extend .nav;
@@ -21,35 +21,61 @@
         text-decoration: none;
         font-size: 1.2rem;
         padding: 20px;
-        box-sizing: border-box;
+        box-sizing: border-box; 
         @include transition(all);
         will-change: all;
         backface-visibility: hidden;
         opacity: .75;
+        margin-right: 1rem;
 
         &:hover, 
         &--active {
-            background-color: darken($primary-color,1.8);
+            
             box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
             opacity: 1;
-            text-shadow: 1px 1px darken($secondary-color, 20%);
             border-radius: 0 0 5px 5px;
-        }
 
+            .theme-gigas & {
+                background-color: darken($gigas,2.5);
+                text-shadow: 1px 1px darken($gigas, 20%);
+            }
+
+            .theme-french & {
+                background-color: darken($french,2.5);
+                text-shadow: 1px 1px darken($french, 20%);
+            }
+
+            .theme-starship & {
+                background-color: darken($starship,2.5);
+                text-shadow: 1px 1px darken($starship, 20%);
+            }
+
+            .theme-radical & {
+                background-color: darken($radical,2.5);
+                text-shadow: 1px 1px darken($radical, 20%);
+            }
+
+            .theme-bottle & {
+                background-color: darken($bottle,2.5);
+                text-shadow: 1px 1px darken($bottle, 20%);
+            }
+        }
         &--active {
-            background-color: darken($primary-color,1.8);
             cursor: default;
         }
     }
 }
 .secondary-nav {
     @extend .nav;
+    margin: 0;
+
     &__item-link {
         display: block;
         color: $white;
         text-decoration: none;
         font-size: .9rem;
-        padding: 10px;
+        padding: 0;
+        margin-right: $base-spacing;
         box-sizing: border-box;
         @include transition(all);
         will-change: all;
@@ -58,13 +84,16 @@
 
         &:hover, 
         &--active {
+            
+            box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
             opacity: 1;
-            text-shadow: 1px 1px darken($secondary-color, 20%);
-            border-radius: 5px;
-        }
+            cursor: default;
+            border-radius: 0 0 5px 5px;
 
-        &--active {
-            background-color: darken($primary-color,1.8);
+            .theme-gigas & {
+                background-color: darken($gigas,1.8);
+                text-shadow: 1px 1px darken($gigas, 20%);
+            }
         }
     }
 }
