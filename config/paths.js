@@ -3,8 +3,8 @@ const path = require('path');
 const getPaths = webroot => ({
     root: path.resolve(webroot),
     src: path.resolve(webroot, './src'),
-    dist: path.resolve(webroot, './/dist'),
-    api: path.resolve(webroot, './/src/api'),
+    dist: path.resolve(webroot, './dist'),
+    api: path.resolve(webroot, './src/api'),
     components: path.resolve(webroot, './src/components'),
     containers: path.resolve(webroot, './src/containers'),
     elements: path.resolve(webroot, './src/elements'),
