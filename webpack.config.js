@@ -17,7 +17,7 @@ const config = {
     output: {
         path: paths.dist,
         filename: 'index_bundle.js',
-        publicPath: '/',
+        publicPath: '/dist',
     },
     resolve: {
         alias: {
