@@ -1,0 +1,41 @@
+@import 'settings/core';
+@import 'settings/colors';
+@import 'mixins/helpers';
+@import 'mixins/media';
+
+.history-block {
+    $block: &;
+    padding: $base-spacing-quarter $base-spacing;
+    background-color: rgba(255,255,255,.03);
+    margin-bottom: $base-spacing;
+    height: 100%;
+
+    @include medium {
+        margin-bottom: 0;
+        border-radius: 8px;
+     }
+
+    &__title {
+        font-size: 1.2rem;
+        margin: $base-spacing 0 0 0;
+    }
+
+    &__jobtitle {
+        font-size: 1rem;
+        font-weight: bold;
+        margin: $base-spacing-quarter 0 0 0;
+        opacity: .7;
+    }
+
+    &__date {
+        margin-bottom: $base-spacing;
+        font-size: 0.7rem;
+        opacity: .5;
+    }
+
+    &__brief {
+        margin: $base-spacing-half 0;
+        font-size: 0.8rem;
+        text-align: none;
+    }
+}

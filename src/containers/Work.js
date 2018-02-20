@@ -2,14 +2,14 @@ import React from 'react';
 import ParseHtml from 'Helpers/ParseHtml';
 import GetContent from 'Api/GetContent';
 import TitleAndText from 'Elements/TitleAndText/TitleAndText';
-import Signature from 'Elements/Signature/Signature';
+import WorkBlock from 'Elements/WorkBlock/WorkBlock';
 import { FadeIn, ScaleIn } from 'Helpers/AnimateApi';
 
 class Experience extends React.Component {
     
     constructor(props) {
         super(props);
-        document.body.className = 'theme-gigas';
+        document.body.className = 'theme-starship';
 
         const pageContent = {},
               blocksContent = []
@@ -25,15 +25,15 @@ class Experience extends React.Component {
 
         this.props.showLoader(true);
 
-        let getPageContent = GetContent.getPageContent('experience'),
+        let getPageContent = GetContent.getPageContent('work'),
             getEntries = GetContent.getEntries({
-                'content_type': 'experienceBlock', 
+                'content_type': 'workBlock', 
                 'order' : 'sys.createdAt'
             });
 
         Promise.all([getPageContent, getEntries]).then((data) => {
             
-            let { title, content, signature } = data[0]['fields'];
+            let { title, content } = data[0]['fields'];
             let { items } = data[1];
 
             this.setState({
@@ -41,7 +41,6 @@ class Experience extends React.Component {
                 pageContent : {
                     title : title,
                     content : content,
-                    signature : signature
                 },
                 blocksContent : items,
             });
@@ -65,12 +64,12 @@ class Experience extends React.Component {
                     <div className="grid">
                         {
                             this.state.blocksContent.map((row, index) => {
-                                const { title, content } = row.fields;
+                                const { title, date, url, brief } = row.fields;
                                 return ( 
                                     <div className="grid__col" key={index}>
-                                        <TitleAndText title={title} titleSize="small" textSize="small" >
-                                        { ParseHtml(content) }
-                                        </TitleAndText>
+                                        <WorkBlock title={title} date={date} url={url}>
+                                        { ParseHtml(brief) }
+                                        </WorkBlock>
                                     </div>
                                 )
                             })

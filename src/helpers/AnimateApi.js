@@ -25,6 +25,9 @@ const animations = {
         entered:  { 
             opacity: 1,
         },
+        exiting: {
+            display: 'none'
+        }
     },
     'scaleIn' : { 
         entering: { 
@@ -79,13 +82,13 @@ const ScaleIn = (props) => (
 );
 
 const SlideDown = (props) => (
-    <Transition in={props.in} timeout={duration}>
+    <Transition in={props.in} timeout={duration} >
       {(state) => (
-        <div style={{ ...defaultStyle, ...animations['slideDown'][state] }}>
+        <div style={{...defaultStyle, ...animations['slideDown'][state] }}>
          {props.children}
         </div>
       )}
     </Transition>
-  );
+);
 
 export { FadeInUp, FadeIn, ScaleIn, SlideDown};

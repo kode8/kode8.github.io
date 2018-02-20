@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import GetContent from 'Api/GetContent';
+import History from 'Helpers/History';
 
-/* Helpsers */
+/* Helpers */
 import { SlideDown, FadeIn } from 'Helpers/AnimateApi';
 
 /* Elements */
@@ -13,13 +14,8 @@ import Nav from 'Components/Nav/Nav';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
 
-/* Pages */
-import Home from 'Containers/Home';
-import Experience from 'Containers/Experience';
-import Services from 'Containers/Services';
-import Portfolio from 'Containers/Portfolio';
-import Contact from 'Containers/Contact';
-
+/* Layouts */
+import Layout from 'Components/Layout/Default';
 
 class App extends React.Component {
 
@@ -28,24 +24,35 @@ class App extends React.Component {
 
     this.state = {
       pageLoading: true,
-      navItems : null
+      navItems : null,
+      navLoaded: false
     }
 
-    this.pageLoading = this.pageLoading.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      this.onRouteChanged();
-    }
-  }
-
-  onRouteChanged() {
-    console.log("ROUTE CHANGED");
+    this.showLoader = this.showLoader.bind(this);
   }
 
   componentDidMount() {
+    this.routeListener();
     this.getNavItems();
+  }
+
+  /* Route change listener */
+  routeListener() {
+    let prevPathname = null;
+    const HistoryListen = History.listen((location, action) => {
+      let { pathname, state } = location;
+      
+      if(prevPathname !== pathname) {
+        this.routeChanged();
+      } 
+
+      prevPathname = pathname;
+    });
+  }
+
+  /* Route has changed */
+  routeChanged() {
+    this.state.pageLoading = true;
   }
 
   /* Get Nav items from API */
@@ -53,16 +60,20 @@ class App extends React.Component {
 
     if(this.state.navItems === null) {
 
-      GetContent.getEntries('navigation').then((results) => {
+
+      GetContent.getEntries({
+        'content_type': 'navigation'
+      }).then((results) => {
 
         let items = results.items,
             navItems = [];
 
         items.map((item, index)=> {
+            const { slug, title, order } = item.fields;
             navItems.push({
-              slug: item.fields.slug,
-              title: item.fields.title,
-              order: item.fields.order,
+              slug: slug,
+              title: title,
+              order: order,
             })
         })
 
@@ -72,7 +83,8 @@ class App extends React.Component {
 
         this.setState(()=>{
           return {
-            navItems : orderedItems
+            navItems : orderedItems,
+            navLoaded: true
           }
         });
 
@@ -80,7 +92,7 @@ class App extends React.Component {
     }
   }
 
-  pageLoading(bool) {
+  showLoader(bool) {
     this.setState(() => {
       return {
         pageLoading: bool
@@ -90,38 +102,40 @@ class App extends React.Component {
 
   render() {
     return(
-      <Router>
+      <Router history={History}>
         <div className="container" >
           <Header>
-            <SlideDown in={ !this.state.pageLoading }>
-              <Nav classNamePrefix="primary" navItems={this.state.navItems} pageLoading={ this.pageLoading }></Nav>
+            <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}>
+              <Nav classNamePrefix="primary" navItems={this.state.navItems} showLoader={this.pageLoading}></Nav>
             </SlideDown>
           </Header>
           <main>
+            <Switch>
+              <Route exact path="/" render={ ()=>
+                <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/experience" render={ ()=>
+                <Layout container='Experience' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/history" render={ ()=>
+                <Layout container='History' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+               <Route exact path="/work" render={ ()=>
+                <Layout container='Work' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+               <Route exact path="/contact" render={ ()=>
+                <Layout container='Contact' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route
+                render={function() {
+                  return <p>Not found</p>; 
+                }}
+              />
+            </Switch> 
             {this.state.pageLoading &&
               <Loader></Loader>      
             }
           </main>
-          <Switch>
-            <Route exact path="/" render={()=><Home pageLoading={ this.pageLoading } />} />
-            <Route path="/experience" render={()=><Experience pageLoading={ this.pageLoading } />} />
-            <Route path="/services" render={()=><Services pageLoading={ this.pageLoading } />} />
-            <Route path="/portfolio" render={()=><Porfolio pageLoading={ this.pageLoading } />} />
-            <Route path="/contact" render={()=><Contact pageLoading={ this.pageLoading } />} />
-            <Route
-              render={function() {
-                return <p>Not found</p>; 
-              }}
-            />
-          </Switch> 
-         
-          <Footer>
-            <FadeIn in={ !this.state.pageLoading }>
-              <hr />
-              <Nav classNamePrefix="secondary" navItems={this.state.navItems} pageLoading={ this.pageLoading } />
-            </FadeIn>
-          </Footer>
-          
         </div>
       </Router>
     );

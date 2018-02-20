@@ -12,7 +12,8 @@ class Home extends React.Component {
     
     constructor(props) {
         super(props);
-        document.body.className = 'theme-gigas';
+
+        document.body.className = 'theme-radical';
 
         const data = {};
 
@@ -23,15 +24,22 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        GetContent.getPageContent('home').then((content) => {
+
+        this.props.showLoader(true);
+
+        GetContent.getPageContent('home').then((data) => {
+
+            const { title, content, signature } = data.fields;
+            
+            this.props.showLoader(false);
+
             this.setState(()=>{
-                this.props.pageLoading(false);
                 return {
                     pageReady : true,
                     page: {
-                        title: content.fields.title,
-                        content: content.fields.content,
-                        signature: content.fields.signature
+                        title: title,
+                        content: content,
+                        signature: signature
                     }
                 }
             });
@@ -47,7 +55,6 @@ class Home extends React.Component {
                         <Signature>{this.state.page.signature}</Signature>
                     </TitleAndText>
                 </FadeIn>
-
             </section>
         )
     }

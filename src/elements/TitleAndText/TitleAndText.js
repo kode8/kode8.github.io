@@ -3,12 +3,22 @@ import React from 'react';
 import './titleandtext.scss';
 
 const TitleAndText = (props) => {
-    const titleSize = `tt__title tt__title-${props.titleSize}`;
-    const textSize = `tt__text tt__text-${props.textSize}`;
+
+    let titleClass = 'tt__title',
+        textClass = 'tt__text';
+
+    if(props.titleSize) {
+        titleClass = `${titleClass}-${props.titleSize}`;
+    }
+
+    if(props.textSize) {
+        textClass = `${titleClass}-${props.titleSize}`;
+    }
+    
     return (
         <div className="tt">
-           <h2 className={titleSize}>{props.title}</h2>
-           <div className={textSize}>{props.children}</div>
+           <h2 className={titleClass}>{props.title}</h2>
+           <div className={textClass}>{props.children}</div>
         </div>
     );
 }

@@ -20,18 +20,3 @@ $base-spacing-quarter: $base-spacing-half / 2;
 $medium-width: 768px;
 $large-width: 1024px;
 
-.example-component {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-    opacity: 0;
-    visibility: hidden; 
-  }
-  .example-component.show {
-    opacity: 1;
-    visibility: visible; 
-  }

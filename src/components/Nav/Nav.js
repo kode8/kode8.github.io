@@ -13,7 +13,7 @@ const Nav = (props) => {
 
     const { match, location, history } = props;
 
-    console.log(props);
+  //  console.log(props);
 
     return (
         <ul className={navContainer} >

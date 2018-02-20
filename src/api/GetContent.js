@@ -3,8 +3,8 @@ import Api from './Api';
 const pageIds = {
     home: '42AkmniyTegOceI280qEa4',
     experience: '28yoD2ObD6ACIIMik80w4I',
-    services: '2rsmuPDjw8kiQKUwEiwGUy',
-    portfolio: 'fjp7FzAI12M0s00K6icQo',
+    work: 'fjp7FzAI12M0s00K6icQo',
+    history: '3Kit73oyZWQIS6AGooYe0m',
     contact: '4aCO2sVoTS20WMKiCI6UWg'
 }
 
@@ -13,6 +13,6 @@ const getPageId = (page) => {
 }
 
 module.exports = {
-    getEntries: (contentType) => Api.getEntries({'content_type': contentType}),
-    getPageContent: (pageName) => Api.getEntry( getPageId(pageName) ),
+    getEntries: (query) => Api.getEntries(query),
+    getPageContent: (pageName) => Api.getEntry( getPageId(pageName) )
 }

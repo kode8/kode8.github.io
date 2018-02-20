@@ -1,6 +1,7 @@
 @import 'settings/core';
 @import 'settings/colors';
 @import 'mixins/helpers';
+@import 'mixins/media';
 
 .tt {
     $block: &;
@@ -17,8 +18,17 @@
         }
     }
 
+    &__subtitle {
+        font-size: 0.8rem;
+    }
+
     &__text {
         margin-bottom: $base-spacing;
+        font-size: 0.9rem;
+
+        @include medium {
+            font-size: inherit;
+         }
 
         &-small {
             font-size: 0.9rem;

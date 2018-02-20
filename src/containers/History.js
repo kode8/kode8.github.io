@@ -2,14 +2,14 @@ import React from 'react';
 import ParseHtml from 'Helpers/ParseHtml';
 import GetContent from 'Api/GetContent';
 import TitleAndText from 'Elements/TitleAndText/TitleAndText';
-import Signature from 'Elements/Signature/Signature';
+import HistoryBlock from 'Elements/HistoryBlock/HistoryBlock';
 import { FadeIn, ScaleIn } from 'Helpers/AnimateApi';
 
-class Experience extends React.Component {
+class History extends React.Component {
     
     constructor(props) {
         super(props);
-        document.body.className = 'theme-gigas';
+        document.body.className = 'theme-firered';
 
         const pageContent = {},
               blocksContent = []
@@ -25,16 +25,16 @@ class Experience extends React.Component {
 
         this.props.showLoader(true);
 
-        let getPageContent = GetContent.getPageContent('experience'),
+        let getPageContent = GetContent.getPageContent('history'),
             getEntries = GetContent.getEntries({
-                'content_type': 'experienceBlock', 
+                'content_type': 'historyBlock', 
                 'order' : 'sys.createdAt'
             });
 
         Promise.all([getPageContent, getEntries]).then((data) => {
             
-            let { title, content, signature } = data[0]['fields'];
-            let { items } = data[1];
+            let { title, content, signature } = data[0]['fields'],
+                { items } = data[1];
 
             this.setState({
                 pageReady : true,
@@ -65,12 +65,12 @@ class Experience extends React.Component {
                     <div className="grid">
                         {
                             this.state.blocksContent.map((row, index) => {
-                                const { title, content } = row.fields;
+                                const { company, date, jobTitle, brief } = row.fields;
                                 return ( 
                                     <div className="grid__col" key={index}>
-                                        <TitleAndText title={title} titleSize="small" textSize="small" >
-                                        { ParseHtml(content) }
-                                        </TitleAndText>
+                                        <HistoryBlock title={company} jobtitle={jobTitle} date={date} >
+                                        { ParseHtml(brief) }
+                                        </HistoryBlock>
                                     </div>
                                 )
                             })
@@ -82,4 +82,4 @@ class Experience extends React.Component {
     }
 }
 
-export default Experience;
+export default History;

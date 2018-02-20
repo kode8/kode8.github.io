@@ -1,0 +1,40 @@
+@import 'settings/core';
+@import 'settings/colors';
+@import 'mixins/helpers';
+@import 'mixins/media';
+
+.work-block {
+    $block: &;
+    padding: $base-spacing-quarter $base-spacing;
+    background-color: rgba(0,0,0,.05);
+    margin-bottom: $base-spacing;
+    height: 100%;
+
+    @include medium {
+        margin-bottom: 0;
+    }
+
+    &__title {
+        font-size: 1.2rem;
+        margin: $base-spacing 0 0 0;
+    }
+
+    &__date {
+        margin-bottom: $base-spacing;
+        font-size: 0.7rem;
+        opacity: .5;
+    }
+
+    &__url {
+        margin: $base-spacing-half 0;
+        font-size: 0.8rem;
+        text-align: none;
+        clear: both;
+    }
+
+    &__brief {
+        margin: $base-spacing-half 0;
+        font-size: 0.8rem;
+        text-align: none;
+    }
+}
