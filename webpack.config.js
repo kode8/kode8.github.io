@@ -82,28 +82,14 @@ const config = {
     devServer: {
         historyApiFallback: true,
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: `${paths.src}/index.html`,
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: `${paths.src}/index.html`,
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
+    ],
 };
-
-if (process.env.NODE_ENV === 'production') {
-    config.plugins.push(
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify.apply('production'),
-            },
-        }),
-        new webpack.optimize.UglifyJsPlugin(),
-    );
-} else {
-    config.plugins.push(
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify.apply('development'),
-            },
-        }),
-    );
-}
 
 module.exports = config;

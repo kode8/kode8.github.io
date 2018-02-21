@@ -17,7 +17,7 @@ import Footer from 'Components/Footer/Footer';
 /* Layouts */
 import Layout from 'Components/Layout/Default';
 
-console.log(process.env.NODE_ENV);
+console.log('Process env = ', process.env.NODE_ENV);
 
 const appRoot = (process.env.NODE_ENV === 'production') ? '/dist' : '/';
 
@@ -105,7 +105,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(appRoot);
     return(
       <Router history={History} basename={appRoot}>
         <div className="container" >
