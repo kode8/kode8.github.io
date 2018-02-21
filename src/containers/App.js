@@ -17,10 +17,6 @@ import Footer from 'Components/Footer/Footer';
 /* Layouts */
 import Layout from 'Components/Layout/Default';
 
-console.log('Process env = ', process.env.NODE_ENV);
-
-const appRoot = (process.env.NODE_ENV === 'production') ? '/dist' : '/';
-
 class App extends React.Component {
 
   constructor(props) {
@@ -105,8 +101,9 @@ class App extends React.Component {
   }
 
   render() {
+
     return(
-      <Router history={History} basename={appRoot}>
+      <Router history={History}>
         <div className="container" >
           <Header>
             <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}>
