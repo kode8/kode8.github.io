@@ -16,8 +16,7 @@ const config = {
     entry: `${paths.src}/index.js`,
     output: {
         path: paths.dist,
-        filename: 'index_bundle.js',
-        publicPath: '/',
+        filename: 'index_bundle.js'
     },
     resolve: {
         alias: {
@@ -96,6 +95,14 @@ if (process.env.NODE_ENV === 'production') {
             },
         }),
         new webpack.optimize.UglifyJsPlugin(),
+    );
+} else {
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify.apply('development'),
+            },
+        }),
     );
 }
 

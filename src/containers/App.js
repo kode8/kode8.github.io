@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-//import Paths from '../../config/paths';
 import GetContent from 'Api/GetContent';
 import History from 'Helpers/History';
 
@@ -17,6 +16,10 @@ import Footer from 'Components/Footer/Footer';
 
 /* Layouts */
 import Layout from 'Components/Layout/Default';
+
+console.log(process.env.NODE_ENV);
+
+const appRoot = (process.env.NODE_ENV === 'production') ? '/dist' : '/';
 
 class App extends React.Component {
 
@@ -102,8 +105,9 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(appRoot);
     return(
-      <Router history={History} basename="/dist">
+      <Router history={History} basename={appRoot}>
         <div className="container" >
           <Header>
             <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}>
@@ -111,7 +115,7 @@ class App extends React.Component {
             </SlideDown>
           </Header>
           <main>
-            <Switch>
+            <Switch>  
               <Route exact path="/" render={ ()=>
                 <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
               } />
@@ -129,7 +133,7 @@ class App extends React.Component {
               } />
               <Route
                 render={function() {
-                  return <p>Not found</p>; 
+                  return <p>Not found</p>;  
                 }}
               />
             </Switch> 
