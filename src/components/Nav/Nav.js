@@ -13,27 +13,28 @@ const Nav = (props) => {
 
     const { match, location, history } = props;
 
-  //  console.log(props);
-
     return (
-        <ul className={navContainer} >
-        { 
-            navItems.map( (value, index) => {
-                return (
-                    <li key={ index }>
-                        <NavLink 
-                            exact
-                            to={value.slug} 
-                            className={navLink} 
-                            activeClassName={navLinkActive}
-                            >
-                            <span>{value.title}</span>
-                        </NavLink>
-                    </li>
-                );
-            })
-        }
-        </ul>
+        <div>
+            <ul className={navContainer} >
+            { 
+                navItems.map( (value, index) => {
+                    return (
+                        <li key={ index }>
+                            <NavLink 
+                                exact
+                                to={value.slug} 
+                                className={navLink} 
+                                activeClassName={navLinkActive}
+                                >
+                                <span>{value.title}</span>
+                            </NavLink>
+                        </li>
+                    );
+                })
+            }
+            </ul>
+            { props.children }
+        </div>
     )
 }
 

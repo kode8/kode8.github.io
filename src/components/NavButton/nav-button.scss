@@ -1,0 +1,24 @@
+@import 'mixins/helpers';
+@import 'mixins/media';
+
+.nav-button {
+    $block: &;
+    border: 0;
+    margin-top: -25px;
+    margin-right: -10px;
+    float: right;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    transform: scale(.9);
+    background-color: rgba(255,255,255,.0);
+    -webkit-tap-highlight-color: transparent;
+    border: 0;
+    outline: 0;
+    @include transition(all);
+
+    &--open {
+        transform: scale(1) rotate(90deg);
+        background-color: rgba(255,255,255,.4);
+    }
+}

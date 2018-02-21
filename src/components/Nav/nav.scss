@@ -1,20 +1,31 @@
 @import 'settings/core';
 @import 'settings/colors';
 @import 'mixins/helpers';
+@import 'mixins/media';
 
 .nav {
     $block: &;
-    display: flex;
-    flex-direction: row;
     list-style: none;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 0 0 -20px;
     padding: 0;
-    height: 70px;
+    margin-top: 0;
+    margin-bottom: $base-spacing * 2;
+    margin-left: -$base-spacing;
+    margin-right: -$base-spacing;
+
+    @include medium {
+        display: flex;
+        flex-direction: row;
+        max-width: 900px;
+        height: 70px;
+        margin: 0 0 0 -20px;
+        width: 100%;
+    }
 }
+
 .primary-nav {
+
     @extend .nav;
+    
     &__item-link {
         display: block;
         color: $white;
@@ -26,17 +37,23 @@
         will-change: all;
         backface-visibility: hidden;
         opacity: .75;
-        margin-right: 1rem;
+        -webkit-tap-highlight-color: transparent;
+
+        @include medium {
+            margin-right: 1rem;
+        }
 
         &:hover {
             background-color: rgba(0,0,0,.05);
         } 
 
         &--active {
-            
-            box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
             opacity: 1;
             border-radius: 0 0 5px 5px;
+
+            @include medium {
+                box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
+            }
 
             .theme-gigas & {
                 background-color: darken($gigas,3.5);
@@ -74,7 +91,9 @@
     }
 }
 .secondary-nav {
+
     @extend .nav;
+    
     margin: 0;
 
     &__item-link {
@@ -82,18 +101,22 @@
         color: $white;
         text-decoration: none;
         font-size: .9rem;
-        padding: 0;
+        padding: $base-spacing-quarter;
         margin-right: $base-spacing;
         box-sizing: border-box;
         @include transition(all);
         will-change: all;
         backface-visibility: hidden;
         opacity: .75;
+        -webkit-tap-highlight-color: transparent;
+
+        @include medium {
+            padding: 0;
+        }
 
         &:hover, 
         &--active {
-            
-            box-shadow: inset 0px 2px 0px 0px rgba($white,.7);
+            box-shadow: none;
             opacity: 1;
             cursor: default;
             border-radius: 0 0 5px 5px;
