@@ -8,11 +8,11 @@ const TitleAndText = (props) => {
         textClass = 'tt__text';
 
     if(props.titleSize) {
-        titleClass = `${titleClass}-${props.titleSize}`;
+        titleClass = `${titleClass} ${titleClass}--${props.titleSize}`;
     }
 
     if(props.textSize) {
-        textClass = `${titleClass}-${props.titleSize}`;
+        textClass = `${textClass} ${textClass}--${props.textSize}`;
     }
     
     return (

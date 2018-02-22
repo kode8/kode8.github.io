@@ -124,30 +124,28 @@ class App extends React.Component {
                 </Nav>
               {/* </SlideDown> */}
             </Header>
-            <main>
-              <Switch>  
-                <Route exact path="/" render={ ()=>
-                  <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-                } />
-                <Route exact path="/experience" render={ ()=>
-                  <Layout container='Experience' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-                } />
-                <Route exact path="/history" render={ ()=>
-                  <Layout container='History' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-                } />
-                <Route exact path="/work" render={ ()=>
-                  <Layout container='Work' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-                } />
-                <Route exact path="/contact" render={ ()=>
-                  <Layout container='Contact' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-                } />
-                <Route
-                  render={function() {
-                    return <p>Not found</p>;  
-                  }}
-                />
-              </Switch> 
-            </main>
+            <Switch>  
+              <Route exact path="/" render={ ()=>
+                <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/experience" render={ ()=>
+                <Layout container='Experience' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/history" render={ ()=>
+                <Layout container='History' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/work" render={ ()=>
+                <Layout container='Work' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route exact path="/contact" render={ ()=>
+                <Layout container='Contact' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+              } />
+              <Route
+                render={function() {
+                  return <p>Not found</p>;  
+                }}
+              />
+            </Switch> 
           </Container>
         </Router>
         {this.state.pageLoading &&

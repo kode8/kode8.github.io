@@ -6,7 +6,7 @@
     }
     &__col {
         width: 100%;
-        text-align: justify;
+      //  text-align: justify;
         @include medium {
            width: 50%;
            box-sizing: border-box;
