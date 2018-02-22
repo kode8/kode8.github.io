@@ -16,7 +16,7 @@ const config = {
     entry: `${paths.src}/index.js`,
     output: {
         path: paths.dist,
-        filename: 'index_bundle.js'
+        filename: '[name].[chunkhash].js',
     },
     resolve: {
         alias: {
@@ -84,7 +84,11 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: `${paths.src}/index.html`,
+            template: `${paths.src}/index.html`
+        }),
+        new HtmlWebpackPlugin({
+            filename: '200.html',
+            template: `${paths.src}/index.html`
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')

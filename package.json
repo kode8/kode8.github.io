@@ -8,7 +8,7 @@
     "eslint": "eslint",
     "start": "webpack-dev-server --open",
     "build": "NODE_ENV=production webpack -p",
-    "deploy": "npm build && surge -p dist --domain jc.surge.sh"
+    "deploy": "npm run build && surge -p ./dist --domain johncarroll.surge.sh"
   },
   "babel": {
     "presets": [

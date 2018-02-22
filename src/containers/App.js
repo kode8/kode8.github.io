@@ -115,15 +115,16 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <Router history={History}>
-          <Container menuExpanded={this.state.menuExpanded} >
-            <Header>
-              {/* <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}> */}
-                <Nav classNamePrefix="primary" navItems={this.state.navItems} >
-                  <NavButton menuExpanded={this.state.menuExpanded} onClick={this.toggleMenu} />
-                </Nav>
-              {/* </SlideDown> */}
-            </Header>
+      <Router history={History}>
+        <Container menuExpanded={this.state.menuExpanded} >
+          <Header>
+            {/* <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}> */}
+              <Nav classNamePrefix="primary" navItems={this.state.navItems} >
+                <NavButton menuExpanded={this.state.menuExpanded} onClick={this.toggleMenu} />
+              </Nav>
+            {/* </SlideDown> */}
+          </Header>
+          <main>
             <Switch>  
               <Route exact path="/" render={ ()=>
                 <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
@@ -134,10 +135,10 @@ class App extends React.Component {
               <Route exact path="/history" render={ ()=>
                 <Layout container='History' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
               } />
-              <Route exact path="/work" render={ ()=>
+               <Route exact path="/work" render={ ()=>
                 <Layout container='Work' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
               } />
-              <Route exact path="/contact" render={ ()=>
+               <Route exact path="/contact" render={ ()=>
                 <Layout container='Contact' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
               } />
               <Route
@@ -146,8 +147,9 @@ class App extends React.Component {
                 }}
               />
             </Switch> 
-          </Container>
-        </Router>
+          </main>
+        </Container>
+      </Router>
         {this.state.pageLoading &&
           <Loader></Loader>      
         }
