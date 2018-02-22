@@ -84,11 +84,6 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            filename: '404.html',
-            template: `${paths.src}/404.html`,
-            inject: false
-        }),
-        new HtmlWebpackPlugin({
             template: `${paths.src}/index.html`,
         }),
         new webpack.DefinePlugin({
