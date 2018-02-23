@@ -48,14 +48,17 @@ class Home extends React.Component {
       
     render() {
         return(
-            <section>
-                 <FadeIn in={ this.state.pageReady }>
-                    <TitleAndText title={this.state.page.title}>
-                        { ParseHtml(this.state.page.content) }
-                        <Signature>{this.state.page.signature}</Signature>
-                    </TitleAndText>
-                </FadeIn>
-            </section>
+            <div>
+                <section>
+                    <FadeIn in={ this.state.pageReady }>
+                        <TitleAndText title={this.state.page.title}>
+                            { ParseHtml(this.state.page.content) }
+                            <Signature>{this.state.page.signature}</Signature>
+                        </TitleAndText>
+                    </FadeIn>
+                </section>
+                { this.props.children }
+            </div>
         )
     }
 }

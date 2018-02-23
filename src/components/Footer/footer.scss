@@ -1,0 +1,10 @@
+@import 'mixins/helpers';
+@import 'mixins/media';
+
+.footer {
+    $block: &;
+
+    &--hidden {
+        opacity: 0;
+    }
+}

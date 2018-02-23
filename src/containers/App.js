@@ -3,6 +3,13 @@ import { Router, Route, Switch } from 'react-router-dom';
 import GetContent from 'Api/GetContent';
 import History from 'Helpers/History';
 
+/* Pages */
+import Home from 'Containers/Home';
+import Experience from 'Containers/Experience';
+import HistoryP from 'Containers/History';
+import Work from 'Containers/Work';
+import Contact from 'Containers/Contact';
+
 /* Helpers */
 import { SlideDown, FadeIn } from 'Helpers/AnimateApi';
 
@@ -15,9 +22,6 @@ import NavButton from 'Components/NavButton/NavButton';
 import Container from 'Components/Container/Container';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
-
-/* Layouts */
-import Layout from 'Components/Layout/Default';
 
 class App extends React.Component {
 
@@ -37,7 +41,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.routeListener();
-    this.getNavItems();
   }
 
   /* Route change listener */
@@ -54,49 +57,12 @@ class App extends React.Component {
     });
   }
 
-  /* Route has changed */
   routeChanged() {
     this.state.pageLoading = true;
     this.setState({
-      menuExpanded: false
+      menuExpanded: false,
+      hideFooter: true
     })
-  }
-
-  /* Get Nav items from API */
-  getNavItems() {
-
-    if(this.state.navItems === null) {
-
-
-      GetContent.getEntries({
-        'content_type': 'navigation'
-      }).then((results) => {
-
-        let items = results.items,
-            navItems = [];
-
-        items.map((item, index)=> {
-            const { slug, title, order } = item.fields;
-            navItems.push({
-              slug: slug,
-              title: title,
-              order: order,
-            })
-        })
-
-        let orderedItems = navItems.sort(function(a, b) {
-          return a['order'] - b['order'];
-        });
-
-        this.setState(()=>{
-          return {
-            navItems : orderedItems,
-            navLoaded: true
-          }
-        });
-
-      });
-    }
   }
 
   toggleMenu() {
@@ -111,49 +77,53 @@ class App extends React.Component {
       }
     });
   }
-
+  
   render() {
+
     return(
-      <div>
-      <Router history={History}>
-        <Container menuExpanded={this.state.menuExpanded} >
-          <Header>
-            {/* <SlideDown in={ this.state.navLoaded } timeout={{enter: 300}}> */}
-              <Nav classNamePrefix="primary" navItems={this.state.navItems} >
-                <NavButton menuExpanded={this.state.menuExpanded} onClick={this.toggleMenu} />
+        <Router history={History}>
+          <div>
+
+            <Header>
+              <Nav classNamePrefix="primary">
+                <NavButton onClick={this.toggleMenu} />
               </Nav>
-            {/* </SlideDown> */}
-          </Header>
-          <main>
-            <Switch>  
-              <Route exact path="/" render={ ()=>
-                <Layout container='Home' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-              } />
-              <Route exact path="/experience" render={ ()=>
-                <Layout container='Experience' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-              } />
-              <Route exact path="/history" render={ ()=>
-                <Layout container='History' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-              } />
-               <Route exact path="/work" render={ ()=>
-                <Layout container='Work' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-              } />
-               <Route exact path="/contact" render={ ()=>
-                <Layout container='Contact' navItems={this.state.navItems} pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
-              } />
-              <Route
-                render={function() {
-                  return <p>Not found</p>;  
-                }}
-              />
-            </Switch> 
-          </main>
-        </Container>
-      </Router>
-        {this.state.pageLoading &&
-          <Loader></Loader>      
-        }
-      </div>
+            </Header>
+
+            <Container menuExpanded={this.state.menuExpanded} >
+              <Switch>  
+                <Route exact path="/" render={ ()=>
+                  <Home pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+                } />
+                  <Route exact path="/experience" render={ ()=>
+                  <Experience pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+                } />
+                  <Route exact path="/work" render={ ()=>
+                  <Work pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+                } />
+                  <Route exact path="/history" render={ ()=>
+                  <HistoryP pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+                } />
+                  <Route exact path="/contact" render={ ()=>
+                  <Contact pageLoading={this.state.pageLoading} showLoader={this.showLoader} />
+                } />
+                <Route
+                  render={function() {
+                    return <p>Not found</p>;  
+                  }}
+                />
+              </Switch> 
+            </Container>
+
+            <Footer hideFooter={this.state.pageLoading}   >
+              <Nav classNamePrefix="secondary" />
+            </Footer>
+
+            {this.state.pageLoading &&
+              <Loader />
+            }
+          </div>
+        </Router>
     );
   }
 };

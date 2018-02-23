@@ -1,9 +1,18 @@
 import React from 'react';
 import Nav from 'Components/Nav/Nav';
+import classNames from 'classnames';
+
+import './footer.scss';
 
 const Footer = (props) => {
+
+    let footerClass = classNames({
+        'footer': true,
+        'footer--hidden': props.hideFooter
+    });
+
     return (
-        <footer>
+        <footer className={footerClass}>
             {props.children}
         </footer>
     );
