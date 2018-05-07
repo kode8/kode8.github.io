@@ -5,17 +5,16 @@ import classNames from 'classnames';
 import './footer.scss';
 
 const Footer = (props) => {
+  const footerClass = classNames({
+    footer: true,
+    'footer--hidden': props.hideFooter,
+  });
 
-    let footerClass = classNames({
-        'footer': true,
-        'footer--hidden': props.hideFooter
-    });
-
-    return (
-        <footer className={footerClass}>
-            {props.children}
-        </footer>
-    );
-}
+  return (
+    <footer className={footerClass}>
+      {props.children}
+    </footer>
+  );
+};
 
 export default Footer;

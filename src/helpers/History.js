@@ -1,7 +1,7 @@
 import React from 'react'
 import CreateHistory from 'history/createBrowserHistory'
 
-const History = CreateHistory()
+const History = CreateHistory();
 
 // Listen to history changes.
 // You can unlisten by calling the constant (`unlisten()`).

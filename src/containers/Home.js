@@ -1,66 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import { FadeIn } from 'Helpers/AnimateApi';
-
-import ParseHtml from 'Helpers/ParseHtml';
 import GetContent from 'Api/GetContent';
+import PageWithContent from 'Helpers/hocs/PageWithContent';
 import TitleAndText from 'Elements/TitleAndText/TitleAndText';
 import Signature from 'Elements/Signature/Signature';
+import ParseHtml from 'Helpers/ParseHtml';
 
-class Home extends React.Component {
-    
-    constructor(props) {
-        super(props);
+class HomeComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    document.body.className = 'theme-radical';
+  }
+  render() {
+    const { title, content, signature } = this.props.content;
 
-        document.body.className = 'theme-radical';
-
-        const data = {};
-
-        this.state = {
-            pageReady: false,
-            page: data,
-        }
-    }
-
-    componentDidMount() {
-
-        this.props.showLoader(true);
-
-        GetContent.getPageContent('home').then((data) => {
-
-            const { title, content, signature } = data.fields;
-            
-            this.props.showLoader(false);
-
-            this.setState(()=>{
-                return {
-                    pageReady : true,
-                    page: {
-                        title: title,
-                        content: content,
-                        signature: signature
-                    }
-                }
-            });
-        });
-    }
-      
-    render() {
-        return(
-            <div>
-                <section>
-                    <FadeIn in={ this.state.pageReady }>
-                        <TitleAndText title={this.state.page.title}>
-                            { ParseHtml(this.state.page.content) }
-                            <Signature>{this.state.page.signature}</Signature>
-                        </TitleAndText>
-                    </FadeIn>
-                </section>
-                { this.props.children }
-            </div>
-        )
-    }
+    return (
+      <TitleAndText title={title}>
+        { ParseHtml(content) }
+        { signature && <Signature>{ signature }</Signature> }
+      </TitleAndText>
+    );
+  }
 }
+
+const Home = PageWithContent(
+  HomeComponent,
+  {
+    page: 'home',
+  },
+);
 
 export default Home;

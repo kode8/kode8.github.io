@@ -1,0 +1,32 @@
+{
+    "extends": [
+        "airbnb"
+    ],
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "globals": {
+        "window": true,
+        "document": true
+    },
+    "settings": {
+        "import/resolver": "webpack",
+        "rules": {
+            "react/jsx-filename-extension": [
+                1,
+                {
+                    "extensions": [
+                        ".js",
+                        ".jsx"
+                    ]
+                }
+            ],
+            "indent": [
+                "error",
+                2
+            ]
+        }
+    }
+}

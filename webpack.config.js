@@ -13,87 +13,87 @@ const postcssfiltergradient = require('postcss-filter-gradient');
 const postcssopacity = require('postcss-opacity');
 
 const config = {
-    entry: `${paths.src}/index.js`,
-    output: {
-        path: paths.dist,
-        filename: '[name].[chunkhash].js',
+  entry: `${paths.src}/index.js`,
+  output: {
+    path: paths.dist,
+    filename: '[name].[chunkhash].js',
+  },
+  resolve: {
+    alias: {
+      Api: paths.api,
+      Components: paths.components,
+      Containers: paths.containers,
+      Elements: paths.elements,
+      Images: paths.images,
+      Utils: paths.utils,
+      Helpers: paths.helpers,
     },
-    resolve: {
-        alias: {
-            Api: paths.api,
-            Components: paths.components,
-            Containers: paths.containers,
-            Elements: paths.elements,
-            Images: paths.images,
-            Utils: paths.utils,
-            Helpers: paths.helpers
-        },
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(js)$/,
-                use: 'babel-loader'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        use: 'babel-loader',
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
             },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.scss$/,
-                use: [{
-                    loader: 'style-loader', // creates style nodes from JS strings
-                }, {
-                    loader: 'css-loader', // translates CSS into CommonJS
-                }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: () => [
-                            autoprefixer({
-                                browserlist: ['last 3 versions', 'ie 10'],
-                            }),
-                            postcssflexbugsfixes(),
-                            postcsspxtorem(),
-                            postcssinlinesvg({
-                                removeFill: true,
-                                path: path.resolve(paths.images),
-                            }),
-                            postcssobjectfitimages(),
-                            postcssfiltergradient(),
-                            postcssopacity(),
-                        ],
-                    },
-                }, {
-                    loader: 'sass-loader', // compiles Sass to CSS
-                    options: {
-                        includePaths: [paths.scss]
-                    }
-                }],
-            },
+          },
         ],
-    },
-    devServer: {
-        historyApiFallback: true,
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: `${paths.src}/index.html`
-        }),
-        new HtmlWebpackPlugin({
-            filename: '200.html',
-            template: `${paths.src}/index.html`
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        }),
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: 'style-loader', // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [
+              autoprefixer({
+                browserlist: ['last 3 versions', 'ie 10'],
+              }),
+              postcssflexbugsfixes(),
+              postcsspxtorem(),
+              postcssinlinesvg({
+                removeFill: true,
+                path: path.resolve(paths.images),
+              }),
+              postcssobjectfitimages(),
+              postcssfiltergradient(),
+              postcssopacity(),
+            ],
+          },
+        }, {
+          loader: 'sass-loader', // compiles Sass to CSS
+          options: {
+            includePaths: [paths.scss],
+          },
+        }],
+      },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: `${paths.src}/index.html`,
+    }),
+    new HtmlWebpackPlugin({
+      filename: '200.html',
+      template: `${paths.src}/index.html`,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
+  ],
 };
 
 module.exports = config;

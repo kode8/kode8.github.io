@@ -6,7 +6,7 @@ const createMarkup = (html) => {
 };
 
 const parseHTML = (html) => {
-    return <div dangerouslySetInnerHTML={createMarkup(html)} />
+return <div dangerouslySetInnerHTML={createMarkup(html)} />
 }
 
 export default parseHTML;
